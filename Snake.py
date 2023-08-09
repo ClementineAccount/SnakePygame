@@ -41,14 +41,34 @@ class SnakePart:
 
 
 class SnakeBody:
-    def __init__(self):
+    def __init__(self, posX = 2, posY = 2):
         self.snakeParts = []
-        self.snakeParts.append(SnakePart(2, 2))
-        self.dirX = 0
+
+        #Create the head
+        self.snakeParts.append(SnakePart(posX, posY))
+        self.dirX = 1
         self.dirY = 0
+        #Add just one body for testing
+        self.addBody()
 
         #For movement, we do a 'swap in place' iteration of the list
+        #Also can be used as a tail/head for whatever algo
         self.tempPart = SnakePart(0, 0)
+
+
+    #Just add one body first and call this inside a loop instead for reduced complexity
+    def addBody(self):
+        #Add in the opposite direction of movement
+
+        #Set the add direction to be the tail (each to the body if just head)
+        self.tempPart = self.snakeParts[len(self.snakeParts) - 1]
+
+
+        #Head follows a different rule where u can just add the opposite of the direction
+        if len(self.snakeParts) == 1:
+            self.snakeParts.append(SnakePart(self.tempPart.posX - self.dirX, self.tempPart.posY - self.dirY))
+        
+
 
     def setDir(self, dirX, dirY):
         self.dirX = dirX
