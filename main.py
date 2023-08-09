@@ -4,7 +4,8 @@ import math
 import os
 
 # Learning to have more than one python file
-import ConwayGrid
+import Grid
+import Snake
 
 # Some configuration
 width = 800
@@ -22,7 +23,9 @@ screen = pygame.display.set_mode((width, height), vsync=False, flags=pygame.RESI
 clock = pygame.time.Clock()
 running = True
 
-grid = ConwayGrid.GridTable()
+grid = Grid.GridTable()
+
+snakeController = Snake.SnakeController(grid)
 
 mouse = pygame.mouse
 key = pygame.key
@@ -34,6 +37,8 @@ elapsedTime = 0.0
 tickTimeSeconds = 0.1
 isPaused = True
 
+
+
 while running:   
     dt = clock.tick(60) / 1000
     elapsedTime += dt
@@ -44,22 +49,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-
     clicks = mouse.get_pressed(3)
 
     if clicks[0]:
         posX = mouse.get_pos()[0];
         posY = mouse.get_pos()[1];
-        grid.clickGrid(posX, posY)
+        snakeController.updateSnake()
     
-
-    if clicks[2] and not wasRight:
-        #print("what")
-        grid.UpdateGrid()
-        wasRight = True
-    elif not clicks[2] and wasRight:
-        wasRight = False
-
     keys = pygame.key.get_pressed()
 
     if keys[pygame.K_SPACE] and not wasPressedSpace:
@@ -72,16 +68,15 @@ while running:
         elapsedTime = 0.0
         if not isPaused:
             grid.UpdateGrid()
-    
-            
- 
-    # flip() the display to put your work on screen
-    #grid.setCellColor(2, 2, "green")
 
-    screen.fill("snow3")
-    grid.draw(screen)
+
+    snakeController.updateSnake()
+    screen.fill("black")
+    snakeController.Draw(screen)
+
+    #grid.draw(screen)
 
     pygame.display.flip()
-    pygame.display.set_caption(str(clock.get_fps()))
+    pygame.display.set_caption("Snake | FPS: " + str(round(clock.get_fps(), 3)))
     
 pygame.quit()
