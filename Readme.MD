@@ -1,7 +1,6 @@
 # What is this?
 
 ![image](https://cdn.discordapp.com/attachments/917446692851318795/1138831178527420467/completed_gif.gif)
-![image](https://cdn.discordapp.com/attachments/903646548204879972/1138700957753024622/2023-August-09_41.gif)
 
 (I recorded that before I fixed the 'go inside yourself' oversight)
 
