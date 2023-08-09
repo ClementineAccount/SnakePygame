@@ -41,7 +41,7 @@ class SnakePart:
 
 
 class SnakeBody:
-    def __init__(self, posX = 2, posY = 2, addParts = 1):
+    def __init__(self, posX = 5, posY = 2, addParts = 6):
         self.snakeParts = []
 
         #Create the head
@@ -67,6 +67,9 @@ class SnakeBody:
         length = len(self.snakeParts)
         self.tempPart = self.snakeParts[length - 1]
 
+        #The missile knows where it is at all times. 
+        # It knows this because it knows where it isn't. By subtracting where it is from where it isn't, 
+        # or where it isn't from where it is (whichever is greater), it obtains a difference, or deviation. 
 
         #Head follows a different rule where u can just add the opposite of the direction
         if length == 1:
@@ -96,9 +99,8 @@ class SnakeBody:
 
         #The missle will go to where it should be rather than where it ought to be
 
-
-        #One thing to consider is that there is addtional complexity if shifting 'in-place' as you need the previous 
-        #One easy techinique is to allocate another list, but that has additional space and time complexity
+        #We use a 'swap' concept in order to iterate past the head. This will have a time complexity of O(n) 
+        #and space of I think O(1 + 1) or something (since I use an extra cell as a temp)
         for i in range(1, len(self.snakeParts)):
             SnakePart.swapPart(self.tempPart, self.snakeParts[i])
 
