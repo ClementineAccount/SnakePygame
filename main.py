@@ -70,7 +70,11 @@ while running:
             grid.UpdateGrid()
 
 
-    snakeController.updateSnake()
+    #if keys[pygame.K_DOWN]:
+        #snakeController.moveSnake(0, 1)
+
+
+    snakeController.update(dt)
     screen.fill("black")
     snakeController.Draw(screen)
 

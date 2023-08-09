@@ -17,6 +17,12 @@ class SnakeController:
         #Rows and Col
         self.snakeHeadPosX = 2
         self.snakeHeadPosY = 2
+        
+        self.snakeDirectionX = 0
+        self.snakeDirectionY = 1
+
+        self.elapsedTickTime = 0
+        self.tickRate = 0.25
     
     #Set snake color
     def updateSnake(self):
@@ -25,5 +31,26 @@ class SnakeController:
     def Draw(self, screen):
         self.grid.draw(screen)
     
+    #To Do: Consider the error between inputs in order to allow this to work with deltaTime and consider integer offset
+    def moveSnake(self):
+        #Reset the color of the previous snake inputs
+        self.grid.setCellColor(self.snakeHeadPosX, self.snakeHeadPosY, self.grid.gridColor)
+
+        self.snakeHeadPosX += self.snakeDirectionX
+        self.snakeHeadPosY += self.snakeDirectionY
+
+    def updateTick(self):
+        self.moveSnake()
+        self.updateSnake()
+
+    def update(self, deltaTime):
+        self.elapsedTickTime += deltaTime
+        if self.elapsedTickTime > self.tickRate:
+            self.elapsedTickTime = 0
+            self.updateTick()
+        
+
+
+
      
 
