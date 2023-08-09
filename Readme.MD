@@ -12,9 +12,8 @@ I noticed that my idea of creating a 'swap' function to do movement for iteratio
 
 # Future Plans
 
-I probably won't bother much with this PyGame version of the Snake clone here, might add the fruit, collision and game loop state some other time. I also might experiment with different ways of setting a localized speed for the Snake character beyond ticks sets, but I do like not having to account for float rounding.
-
-I intend to remake both this and Conway's in SDL2 so that I can create more class helper functions with the grid. I had flirted with the idea of creating a project that combines both Snake and Conway, reusing the same grid class I had made. Maybe I'd do both an SDL2 and Python version for practice though.
+~~I probably won't bother much with this PyGame version of the Snake clone here, might add the fruit, collision and game loop state some other time.~~ 
+I added the fruit spawning that evening. Still not planning on adding the gameover and reset state.  I do have an idea to remake both this and Conway's in SDL2 so that I can create more class helper functions with the grid. I had played with the idea of creating a project that combines both Snake and Conway, reusing the same grid class I had made. Maybe I'd do both an SDL2 and Python version for practice though.
 
 
 # How do I run it?
