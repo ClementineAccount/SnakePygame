@@ -22,7 +22,7 @@ class SnakeController:
         self.snakeDirectionY = 1
 
         self.elapsedTickTime = 0
-        self.tickRate = 0.25
+        self.tickRate = 0.10
     
     #Set snake color
     def updateSnake(self):
