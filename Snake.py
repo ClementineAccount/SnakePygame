@@ -1,9 +1,27 @@
 import Grid
 
 
+#Just x and y
+#class Point2D:
+    
+
+
+#This can have a Point2D. Considered that but want to do it this way instead for now
+class SnakePart:
+    def __init__(self, posX, posY): 
+        self.posX = posX
+        self.posY = posY
+
+class SnakeBody:
+    def __init__(self):
+        self.snakeParts = []
+        self.snakeParts.append(SnakePart(2, 2))
+    
+
+
 
 #Snake controller 'has a' relationship with a grid (so they can set the placement)
-
+#Snake controller also 'has a' snake to
 
 #https://stackoverflow.com/questions/986006/how-do-i-pass-a-variable-by-reference
 class SnakeController:
