@@ -82,8 +82,11 @@ class SnakeBody:
 
 
     def setDir(self, dirX, dirY):
-        self.dirX = dirX
-        self.dirY = dirY
+        #Reject directional sets that go 'inside' of itself
+        if self.dirX is not -dirX:
+            self.dirX = dirX
+        if self.dirY is not -dirY:
+            self.dirY = dirY
 
     def move(self):
 
@@ -147,6 +150,7 @@ class SnakeController:
         
 
     def setSnakeDirection(self, dirX, dirY):
+ 
         self.snake.setDir(dirX, dirY)
 
     def updateTick(self):

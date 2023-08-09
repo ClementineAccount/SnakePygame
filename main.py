@@ -74,11 +74,11 @@ while running:
 
     if keys[pygame.K_DOWN]:
         snakeController.setSnakeDirection(0, 1)
-    if keys[pygame.K_UP]:
+    elif keys[pygame.K_UP]:
         snakeController.setSnakeDirection(0, -1)
-    if keys[pygame.K_LEFT]:
+    elif keys[pygame.K_LEFT]:
         snakeController.setSnakeDirection(-1, 0)
-    if keys[pygame.K_RIGHT]:
+    elif keys[pygame.K_RIGHT]:
         snakeController.setSnakeDirection(1, 0)
 
 
