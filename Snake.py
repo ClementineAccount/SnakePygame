@@ -12,11 +12,74 @@ class SnakePart:
         self.posX = posX
         self.posY = posY
 
+    #I want to test this too
+    def swapPart(lhs, rhs):
+        tempX = lhs.posX
+        tempY = lhs.posY
+
+        lhs.posX = rhs.posX
+        lhs.posY = rhs.posY
+
+        rhs.posX = tempX
+        rhs.posY = tempY
+
+    #Test that swapPart works
+    def TestSwap():
+        lhs = SnakePart(1, 2)
+        rhs = SnakePart(5, 7)
+
+        assert lhs.posX == 1
+        assert lhs.posY == 2
+        assert rhs.posX == 5
+        assert rhs.posY == 7
+
+        SnakePart.swapPart(lhs, rhs)
+        assert lhs.posX == 5
+        assert lhs.posY == 7
+
+        assert rhs.posX == 1
+        assert rhs.posY == 2
+
+        #Need to figure out if I can use a syntax like this though
+        #assert(lhs.posX == 5 and lhs.posY == 7)
+        #assert(rhs.posX == 1 and rhs.posY == 2)
+
+
 class SnakeBody:
     def __init__(self):
         self.snakeParts = []
         self.snakeParts.append(SnakePart(2, 2))
-    
+        self.dirX = 0
+        self.dirY = 0
+
+        #For movement, we do a 'swap in place' iteration of the list
+        self.tempPart = SnakePart(0, 0)
+
+    def setDir(self, dirX, dirY):
+        self.dirX = dirX
+        self.dirY = dirY
+
+    def move(self):
+
+        #I want this to be a copy but I am not sure if it will yet so to prevent bug I will do by hand first
+        #self.tempPart = self.snakeParts[0]
+
+        self.tempPart.posX = self.snakeParts[0].posX
+        self.tempPart.posY = self.snakeParts[0].posY
+
+        #We cannot just apply the same offset to every body. For now just do only the head
+        self.snakeParts[0].posX += self.dirX
+        self.snakeParts[0].posY += self.dirY
+
+        #The missle will go to where it should be rather than where it ought to be
+
+
+        #One thing to consider is that there is addtional complexity if shifting 'in-place' as you need the previous 
+        #One easy techinique is to allocate another list, but that has additional space and time complexity
+        for i in range(1, len(self.snakeParts)):
+            SnakePart.swapPart(self.tempPart, self.snakeParts[i])
+
+
 
 
 
@@ -31,34 +94,35 @@ class SnakeController:
         #skateboarding using a surfboard with wheels drilled onto the side.
         self.grid = grid
 
-        #To Do: Make this a different class that has coordinates representing the body and head
-        #Rows and Col
-        self.snakeHeadPosX = 2
-        self.snakeHeadPosY = 2
-        
-        self.snakeDirectionX = 0
-        self.snakeDirectionY = 1
+
+        self.snake = SnakeBody()
+        self.snake.setDir(0, 1)
 
         self.elapsedTickTime = 0
         self.tickRate = 0.10
     
     #Set snake color
     def updateSnake(self):
-        self.grid.setCellColor(self.snakeHeadPosX, self.snakeHeadPosY, "green")
+        for part in self.snake.snakeParts:
+            self.grid.setCellColor(part.posX, part.posY, "green")
+
     
     def Draw(self, screen):
         self.grid.draw(screen)
     
     def moveSnake(self):
         #Reset the color of the previous snake inputs
-        self.grid.setCellColor(self.snakeHeadPosX, self.snakeHeadPosY, self.grid.gridColor)
+        #One method is to just 'paint over' all the previous positions before the movemoment. Not the best as its O(n^2)
+        #but N is not gonna be bigger than the grid.
 
-        self.snakeHeadPosX += self.snakeDirectionX
-        self.snakeHeadPosY += self.snakeDirectionY
+        for part in self.snake.snakeParts:
+            self.grid.setCellColor(part.posX, part.posY, self.grid.gridColor)
+
+        self.snake.move()
+        
 
     def setSnakeDirection(self, dirX, dirY):
-        self.snakeDirectionX = dirX
-        self.snakeDirectionY = dirY
+        self.snake.setDir(dirX, dirY)
 
     def updateTick(self):
         self.moveSnake()

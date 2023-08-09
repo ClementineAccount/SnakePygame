@@ -7,6 +7,9 @@ import os
 import Grid
 import Snake
 
+#Run tests
+Snake.SnakePart.TestSwap()
+
 # Some configuration
 width = 800
 height = 600
