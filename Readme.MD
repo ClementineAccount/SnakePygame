@@ -1,4 +1,7 @@
 # What is this?
+
+![image](https://cdn.discordapp.com/attachments/917446692851318795/1138710492991455333/image.png)
+
 This is a simple clone of the game [Snake](https://en.wikipedia.org/wiki/Snake_(video_game_genre)). I made this in under two hours because I had not make a Snake clone before and was bothered by not reaching that beginner coding milestone. I was also curious how I'd solve the problem of Snake's movement and growth logic by myself without external help. Now that I have made it I feel more at ease. This uses the same Grid class from my previous [Conway](https://github.com/ClementineAccount/ConwayPygame) project, also in PyGame.
 
 Currently this only has movement and no collision detection or the fruit spawning. I might add that later but those features are not interesting to me and I had solved very [similar problems](https://github.com/ClementineAccount/ConwayPygame) grid collision and placement in the past. The main thing I was concerned with was 'growing' and 'movement' for a snake body and linked list. I was happy about the approach I took, keeping track of direction and updating the snake by a grid.
