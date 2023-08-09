@@ -28,17 +28,12 @@ class SnakePart:
         lhs = SnakePart(1, 2)
         rhs = SnakePart(5, 7)
 
-        assert lhs.posX == 1
-        assert lhs.posY == 2
-        assert rhs.posX == 5
-        assert rhs.posY == 7
+        assert lhs.posX == 1 and lhs.posY == 2
+        assert rhs.posX == 5 and rhs.posY == 7
 
         SnakePart.swapPart(lhs, rhs)
-        assert lhs.posX == 5
-        assert lhs.posY == 7
-
-        assert rhs.posX == 1
-        assert rhs.posY == 2
+        assert lhs.posX == 5 and lhs.posY == 7
+        assert rhs.posX == 1 and rhs.posY == 2
 
         #Need to figure out if I can use a syntax like this though
         #assert(lhs.posX == 5 and lhs.posY == 7)
